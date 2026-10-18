@@ -90,3 +90,10 @@ button { cursor:pointer; }
 .brand-instagram-dot { fill:currentColor;stroke:none; }
 .social-row .brand-instagram,.social-row .brand-x { width:13px;height:13px; }
 @media (max-width:420px) { .template-list { grid-template-columns:1fr 1fr; }.template-option { min-height:125px;padding:12px; }.mini-signature { height:62px; } }
+
+.flat-social-mark { display:inline-block; font-family:Arial,Helvetica,sans-serif; font-size:9px; font-style:normal; font-weight:700; line-height:1; }
+.social-input-icon .flat-social-mark { font-size:10px; }
+.provided-contact-icon { display:block; flex:none; width:14px; height:14px; object-fit:contain; }
+
+.provided-social-icon { display:block; width:15px; height:15px; object-fit:contain; }
+.social-input-icon .provided-social-icon { width:16px; height:16px; }
