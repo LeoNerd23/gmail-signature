@@ -104,3 +104,12 @@ button { cursor:pointer; }
 .legal-notice-field textarea:focus { border-color:#82bdb2;box-shadow:0 0 0 3px #e6f3f0; }
 .legal-notice-field textarea::placeholder { color:#aeb9b6; }
 .legal-notice-field small { color:#83928f;font-size:10px;line-height:1.45; }
+
+.site-footer { padding-top:12px;text-align:right;color:#879691;font-size:11px; }.site-footer a { color:#087e72;text-decoration:none; }.site-footer a:hover { text-decoration:underline; }
+
+.preview-panel { position:relative; }
+.donate-qr { position:absolute;top:12px;right:12px;z-index:2;display:block;width:112px;height:auto; }
+@media (max-width:760px) { .donate-qr { top:8px;right:8px;width:86px; } }
+
+@media (min-width:761px) { .app-shell { height:100vh;height:100dvh;min-height:0;overflow:hidden; }.editor { height:100vh;height:100dvh;min-height:0;overflow-y:auto; }.preview-panel { height:100vh;height:100dvh;min-height:0;overflow-y:auto; } }
+@media (max-width:760px) { .app-shell { height:auto;min-height:100vh;min-height:100dvh;overflow:visible; }.editor { height:auto;min-height:0;overflow:visible; }.preview-panel { height:auto;min-height:650px;overflow:visible; } }

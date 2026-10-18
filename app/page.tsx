@@ -355,7 +355,6 @@ export default function Page() {
         fields.secondaryEmail && ["secondaryEmail", fields.secondaryEmail],
         fields.phone && ["phone", fields.phone],
         fields.mobile && ["mobile", fields.mobile],
-        fields.website && ["website", fields.website],
         fields.address && ["address", fields.address],
       ].filter(Boolean) as [string, string][],
     [fields]
@@ -415,7 +414,7 @@ export default function Page() {
       )
       .join("")
     const picture = logo
-      ? `<img src="${escapeHtml(logo)}" width="90" height="54" alt="Logo" style="display:block;width:90px;height:54px;border:0;object-fit:contain">`
+      ? `<img src="${escapeHtml(logo)}" alt="Logo" style="display:block;width:auto;height:auto;max-width:90px;max-height:54px;border:0">`
       : ""
     const network = socials
       .map(
@@ -428,10 +427,13 @@ export default function Page() {
         }
       )
       .join("")
+      + (fields.website
+        ? `<a href="${escapeHtml(socialHref(fields.website))}" target="_blank" rel="noopener noreferrer" aria-label="Site" style="display:inline-block;width:24px;height:24px;line-height:22px;text-align:center;vertical-align:middle;margin:0 5px 0 0;color:#000;background-color:#ffffff;border:1px solid #dddddd;border-radius:4px;text-decoration:none;font-family:Arial,sans-serif;font-size:10px;font-weight:bold"><img src="${assetBase}${contactIconPaths.website}" width="15" height="15" alt="Site" style="display:inline-block;width:15px;height:15px;border:0;vertical-align:middle"></a>`
+        : "")
     const person = `<span style="font-size:${style.size * 1.15}px;font-weight:bold;color:${style.nameColor};line-height:1.3">${name}</span>${details}`
     const base = `font-family:${style.font},Arial,sans-serif;font-size:${style.size}px;color:${textColor};line-height:1.45`
     const centered = `<table cellpadding="0" cellspacing="0" border="0" align="center" style="${base};border-collapse:collapse;text-align:center"><tr><td align="center" style="padding:0 0 8px">${picture}</td></tr><tr><td align="center">${person}</td></tr>${rows ? `<tr><td align="center" style="padding-top:10px;border-top:2px solid ${style.divider}">${rows}</td></tr>` : ""}${network ? `<tr><td align="center" style="padding-top:8px">${network}</td></tr>` : ""}</table>`
-    const horizontal = `<table cellpadding="0" cellspacing="0" border="0" style="${base};border-collapse:collapse"><tr>${picture ? `<td width="90" valign="middle" style="width:90px;padding:2px 15px 2px 0">${picture}</td>` : ""}<td valign="middle" style="${picture ? `border-left:2px solid ${style.divider};padding:2px 0 2px 15px` : "padding:2px 0"}">${person}</td></tr>${rows ? `<tr><td colspan="2" style="padding-top:10px;border-top:1px solid #edf0ef">${rows}</td></tr>` : ""}${network ? `<tr><td colspan="2" style="padding-top:8px">${network}</td></tr>` : ""}</table>`
+    const horizontal = `<table cellpadding="0" cellspacing="0" border="0" style="${base};border-collapse:collapse"><tr>${picture ? `<td width="90" valign="middle" style="width:90px;padding:2px 15px 2px 0">${picture}</td>` : ""}<td valign="middle" style="${picture ? `border-left:2px solid ${style.divider};padding:2px 0 2px 15px` : "padding:2px 0"}">${person}</td></tr>${rows ? `<tr><td colspan="2" height="10" style="height:10px;font-size:0;line-height:0">&nbsp;</td></tr><tr><td colspan="2" style="padding-top:8px;border-top:1px solid #edf0ef">${rows}</td></tr>` : ""}${network ? `<tr><td colspan="2" style="padding-top:8px">${network}</td></tr>` : ""}</table>`
     const reversed = `<table cellpadding="0" cellspacing="0" border="0" style="${base};border-collapse:collapse"><tr><td valign="middle" align="right" style="${picture ? `border-right:2px solid ${style.divider};padding:2px 15px 2px 0` : "padding:2px 0"}">${person}</td>${picture ? `<td width="90" valign="middle" align="center" style="width:90px;padding:2px 0 2px 18px">${picture}</td>` : ""}</tr>${rows ? `<tr><td colspan="2" align="right" style="padding-top:9px">${rows}</td></tr>` : ""}${network ? `<tr><td colspan="2" align="right" style="padding-top:8px">${network}</td></tr>` : ""}</table>`
     const profile = template === 1 ? centered : template === 2 ? reversed : horizontal
     const legalFooter = fields.legalNotice.trim()
@@ -868,13 +870,11 @@ export default function Page() {
         </footer>
       </aside>
       <section className="preview-panel">
+        <img className="donate-qr" src="/icons/donate.png" alt="QR Code para doação via Pix" />
         <header className="preview-header">
           <div>
             <div className="eyebrow">AO VIVO</div>
             <h2>Prévia da assinatura</h2>
-          </div>
-          <div className="live-indicator">
-            <i /> Atualizado em tempo real
           </div>
         </header>
         <div className="preview-workspace">
@@ -935,6 +935,16 @@ export default function Page() {
             {copied ? <Check size={16} /> : <Copy size={16} />}{" "}
             {copied ? "Copiado!" : "Copiar assinatura"}
           </Button>
+        </footer>
+        <footer className="site-footer">
+          Desenvolvido por{" "}
+          <a
+            href="https://www.linkedin.com/in/leonardo-alcantara23/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Leonardo Alcantara
+          </a>
         </footer>
       </section>
     </main>
